@@ -1,23 +1,28 @@
-import { Shield, ArrowUpRight, Building2, ChevronDown, Info } from "lucide-react"
+import { Trophy, ArrowUpRight, Star } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+
+const achievements = [
+  { title: "Надёжный заёмщик", desc: "Вернул 5 долгов вовремя", earned: true, icon: "🏅" },
+  { title: "Финансовый гуру", desc: "28 уровень достигнут", earned: true, icon: "🏆" },
+  { title: "Пунктуальность", desc: "Ни одной просрочки", earned: false, icon: "⏱️" },
+]
 
 export function PaymentRolesCard() {
   return (
     <div className="rounded-2xl bg-[#141414] border border-[#262626] p-6 flex flex-col">
       <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#1f1f1f] border border-[#2a2a2a]">
-        <Shield className="h-5 w-5 text-gray-400" />
+        <Trophy className="h-5 w-5 text-yellow-400" />
       </div>
 
-      <h3 className="mb-2 text-lg font-semibold text-white">Управление правами доступа</h3>
-      <p className="mb-4 text-sm text-gray-400">Устанавливайте лимиты, согласования и распределяйте права по команде</p>
+      <h3 className="mb-2 text-lg font-semibold text-white">Система достижений</h3>
+      <p className="mb-4 text-sm text-gray-400">28 уровней мотивации: соблюдайте финансовую дисциплину и получайте награды</p>
 
       <a href="#" className="mb-6 inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors">
         Подробнее <ArrowUpRight className="ml-1 h-4 w-4" />
       </a>
 
-      <div className="mt-auto space-y-4 rounded-xl bg-[#1a1a1a] border border-[#262626] p-4">
-        <div className="flex items-center justify-between">
+      <div className="mt-auto space-y-3 rounded-xl bg-[#1a1a1a] border border-[#262626] p-4">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10">
               <AvatarImage src="/professional-man-portrait.png" alt="Алексей Петров" />
@@ -25,39 +30,31 @@ export function PaymentRolesCard() {
             </Avatar>
             <div>
               <p className="text-sm font-medium text-white">Алексей Петров</p>
-              <p className="text-xs text-gray-500">alexey@finpotok.ru</p>
+              <div className="flex items-center gap-1 mt-0.5">
+                <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                <span className="text-xs text-yellow-400 font-medium">Уровень 12 · Эксперт</span>
+              </div>
             </div>
           </div>
-          <button className="text-sm text-violet-400 hover:text-violet-300">Изменить</button>
+          <span className="text-xs text-gray-500">из 28</span>
         </div>
 
-        <div>
-          <label className="mb-2 flex items-center gap-1 text-xs text-gray-400">
-            Способ оплаты <Info className="h-3 w-3" />
-          </label>
-          <div className="flex items-center justify-between rounded-lg bg-[#0f0f0f] border border-[#262626] px-3 py-2.5">
-            <span className="text-sm text-white">Банковский перевод</span>
-            <ChevronDown className="h-4 w-4 text-gray-500" />
-          </div>
-          <p className="mt-1 text-xs text-gray-500">Перевод в тот же день, без комиссии.</p>
+        <div className="w-full bg-[#0f0f0f] rounded-full h-1.5 mb-4">
+          <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: "43%" }} />
         </div>
 
-        <div className="border-t border-dashed border-[#333] pt-4">
-          <div className="flex items-center justify-between">
+        {achievements.map((ach, i) => (
+          <div key={i} className={`flex items-center justify-between rounded-lg px-3 py-2.5 ${ach.earned ? "bg-yellow-500/10 border border-yellow-500/20" : "bg-[#0f0f0f] border border-[#262626]"}`}>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0f0f0f] border border-[#262626]">
-                <Building2 className="h-5 w-5 text-gray-500" />
-              </div>
+              <span className="text-lg">{ach.icon}</span>
               <div>
-                <p className="text-sm font-medium text-white">ООО «Финансовый Партнёр»</p>
-                <p className="text-xs text-gray-500">Счёт ••9876 · БИК ••5432</p>
+                <p className={`text-sm font-medium ${ach.earned ? "text-white" : "text-gray-500"}`}>{ach.title}</p>
+                <p className="text-xs text-gray-600">{ach.desc}</p>
               </div>
             </div>
-            <button className="text-sm text-violet-400 hover:text-violet-300">Изменить</button>
+            {ach.earned && <span className="text-xs text-yellow-400 font-medium">Получено</span>}
           </div>
-        </div>
-
-        <Button className="w-full bg-[#252525] text-gray-400 hover:bg-[#2a2a2a] hover:text-white">Продолжить</Button>
+        ))}
       </div>
     </div>
   )

@@ -4,25 +4,29 @@ import { Button } from "@/components/ui/button"
 export function Header() {
   return (
     <header className="flex items-center justify-between px-8 py-4">
-      <div className="flex items-center gap-2">
-        <ФинПотокLogo />
+      <div className="flex items-center gap-3">
+        <img
+          src="https://cdn.poehali.dev/projects/891031cd-516e-4b46-9f57-05cab3cb95f8/bucket/c1b98931-a0a9-4ea9-ab74-e39aeb1400f4.jpg"
+          alt="В Долг"
+          className="h-9 w-9 rounded-xl object-cover"
+        />
         <span className="text-lg font-semibold text-white">
-          ФинПоток<sup className="text-xs">™</sup>
+          В Долг<sup className="text-xs text-yellow-400">™</sup>
         </span>
       </div>
 
       <nav className="hidden md:flex items-center gap-8">
         <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-          Продукты
+          Функции
         </a>
         <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1">
-          Решения <ChevronDown className="h-4 w-4" />
+          Для банков <ChevronDown className="h-4 w-4" />
         </a>
         <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-          Ресурсы
+          Безопасность
         </a>
         <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-          Тарифы
+          О сервисе
         </a>
         <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
           Контакты
@@ -31,21 +35,10 @@ export function Header() {
 
       <Button
         variant="outline"
-        className="rounded-full border-violet-500 text-violet-400 hover:bg-violet-500/10 hover:text-violet-300 bg-transparent"
+        className="rounded-full border-yellow-500 text-yellow-400 hover:bg-yellow-500/10 hover:text-yellow-300 bg-transparent"
       >
-        Запросить демо
+        Скачать демо
       </Button>
     </header>
-  )
-}
-
-function ФинПотокLogo() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="8" cy="8" r="3" fill="#8B5CF6" />
-      <circle cx="16" cy="8" r="3" fill="#8B5CF6" opacity="0.6" />
-      <circle cx="8" cy="16" r="3" fill="#8B5CF6" opacity="0.6" />
-      <circle cx="16" cy="16" r="3" fill="#8B5CF6" opacity="0.4" />
-    </svg>
   )
 }
