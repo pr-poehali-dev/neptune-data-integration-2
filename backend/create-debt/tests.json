@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "Создание долга без обязательных полей — ошибка 400",
+      "method": "POST",
+      "path": "/",
+      "body": {"creditor_user_id": 1},
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Кредитор и должник совпадают — ошибка 400",
+      "method": "POST",
+      "path": "/",
+      "body": {"creditor_user_id": 1, "debtor_user_id": 1, "amount": 500},
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Успешное создание долга",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "creditor_user_id": 1,
+        "debtor_user_id": 2,
+        "amount": 5000,
+        "interest_rate": 5.5,
+        "due_date": "2026-06-01",
+        "description": "Тестовый долг"
+      },
+      "expectedStatus": 201,
+      "bodyMatcher": "partial"
+    }
+  ]
+}
